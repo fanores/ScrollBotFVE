@@ -1,6 +1,5 @@
 """FVE HTTP Client"""
-import requests
-from requests.exceptions import HTTPError
+from lib.HttpClient import HttpClient
 
 
 class FveHttpClient:
@@ -23,18 +22,13 @@ class FveHttpClient:
             -> <FE1> : total produced power
             -> <DaR> : date
             -> <TiR> : time
-        :return: request response
+        :return: request response from FVE
         """
         request_url = self.url + self.ACTUAL_MEASUREMENT_URL_SUFFIX
 
         try:
-            response = requests.get(request_url)
-            response.raise_for_status()
-        except HTTPError as http_error:
-            response_body = ''
+            fve_response = HttpClient.get_request(request_url)
         except Exception as error:
-            response_body = ''
-        else:
-            response_body = response.text
+            fve_response = 'Error'
 
-        return response_body
+        return fve_response
