@@ -1,10 +1,11 @@
 import requests
 
-def main():
-    print('Request - start at: 185.152.113.8:8003')
 
-    def getActualResults(url):
-        # Get Actual Results -> 'http://185.152.113.8:8003/meas.xml'
+def main():
+    print('Request - start at: 192.168.2.51:8003')
+
+    def get_actual_results(url):
+        # Get Actual Results -> 'http://192.168.2.51:8003/meas.xml'
         # List of Elements:
         # -> <PPS> : sum of phase L1 + L2 + L3
         # -> <FE1> : total produced power
@@ -15,15 +16,16 @@ def main():
 
         if response.status_code == 200:
             print('200: Success')
-            responseBody = response.text
+            response_body = response.text
         elif response.status_code == 404:
             print('400: Error')
-            responseBody = ''
+            response_body = ''
 
-        return  responseBody
+        return response_body
 
     print('ACTUAL RESULTS:')
-    print(getActualResults('http://185.152.113.8:8003/meas.xml'))
+    print(get_actual_results('http://192.168.2.51:8003/meas.xml'))
 
 
-if __name__ == '__main__': main()
+if __name__ == '__main__':
+    main()

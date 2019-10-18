@@ -17,7 +17,7 @@ class FveHttpClient:
     # get actual measurements response body
     def get_actual_measurements(self):
         """
-            Get Actual Results -> 'http://185.152.113.8:8003/meas.xml'
+            Get Actual Results -> 'http://192.168.2.51:8003/meas.xml'
             List of Elements:
             -> <PPS> : sum of phase L1 + L2 + L3
             -> <FE1> : total produced power
