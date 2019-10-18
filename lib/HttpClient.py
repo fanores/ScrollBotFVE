@@ -1,6 +1,7 @@
 """HTTP Client"""
 import requests
 from requests.exceptions import HTTPError
+from lib.FveScrollBotError import FveHttpError
 
 
 class HttpClient:
@@ -14,10 +15,8 @@ class HttpClient:
             response = requests.get(url)
             response.raise_for_status()
         except HTTPError as http_error:
-            raise Exception('Request error: {}'.format(print(http_error)))
+            raise FveHttpError('Request error: {}'.format(print(http_error)))
         except Exception as error:
-            raise Exception('Request error: {}'.format(print(error)))
-        else:
-            response_body = response.text
+            raise FveHttpError('Request error: {}'.format(print(error)))
 
-        return response_body
+        return response
