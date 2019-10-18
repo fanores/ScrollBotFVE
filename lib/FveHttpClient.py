@@ -1,5 +1,6 @@
 """FVE HTTP Client"""
 from lib.HttpClient import HttpClient
+from lib.FveScrollBotError import FveHttpError
 
 
 class FveHttpClient:
@@ -28,7 +29,7 @@ class FveHttpClient:
 
         try:
             fve_response = HttpClient.get_request(request_url)
-        except Exception as error:
-            fve_response = 'Error'
+        except FveHttpError as error:
+            raise FveHttpError(print(error))
 
         return fve_response
