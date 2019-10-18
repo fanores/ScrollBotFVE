@@ -3,7 +3,7 @@ from lib.FveHttpClient import FveHttpClient
 
 
 def main():
-    url = 'http://185.152.113.8:8003/'
+    url = 'http://192.168.2.51:8003/'
     print('Request starts at: {}'.format(url))
 
     http_client = FveHttpClient(url)
