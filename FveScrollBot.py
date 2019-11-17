@@ -1,5 +1,6 @@
 """FVE ScrollBot"""
 from lib.FveHttpClient import FveHttpClient
+from lib.FveXmlParser import FveXmlParser
 
 
 def main():
@@ -13,6 +14,9 @@ def main():
     print(fve_response.text)
 
     # Parse Measurements
+    fve_xml_parser = FveXmlParser(fve_response.text)
+    actual_measurements = fve_xml_parser.parse_xml()
+    print(actual_measurements)
 
 
 if __name__ == '__main__':

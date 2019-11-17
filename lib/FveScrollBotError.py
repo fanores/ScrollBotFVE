@@ -11,3 +11,10 @@ class FveHttpError(FveScrollBotError):
 
     def __init__(self, message):
         self.message = message
+
+
+class FveXmlError(FveScrollBotError):
+    """Exceptions raised for XML errors."""
+
+    def __init__(self, message):
+        self.message = message
