@@ -18,3 +18,9 @@ class FveXmlError(FveScrollBotError):
 
     def __init__(self, message):
         self.message = message
+
+class FveFileError(FveScrollBotError):
+    """Exceptions raised for File processing errors."""
+
+    def __init__(self, message):
+        self.message = message
