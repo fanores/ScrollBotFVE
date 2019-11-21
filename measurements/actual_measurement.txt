@@ -1,0 +1,3 @@
+Date;Time;ProducedTillToday;ProducedNow;RegulatorPower;RegulatorTemperature;FaultVoltage;FaultSensorTemp;FaultTempLimit;
+21.11.2019;20:37:58;15746.45;-2.30;0;27.4;0;0;0;
+21.11.2019;20:38:42;15746.45;-2.29;0;27.4;0;0;0;
