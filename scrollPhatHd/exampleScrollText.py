@@ -30,4 +30,5 @@ def scroll_message(message):
     time.sleep(0.5)                              # Delay at the end of scrolling
 
 
+scrollphathd.rotate(degrees=180)
 scroll_message("Hello World! How are you today?")
