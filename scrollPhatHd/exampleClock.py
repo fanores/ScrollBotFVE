@@ -21,7 +21,7 @@ BRIGHTNESS = 0.3
 
 # Uncomment the below if your display is upside down
 #   (e.g. if you're using it in a Pimoroni Scroll Bot)
-# scrollphathd.rotate(degrees=180)
+scrollphathd.rotate(degrees=180)
 
 while True:
     scrollphathd.clear()
