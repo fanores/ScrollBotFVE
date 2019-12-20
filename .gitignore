@@ -1,6 +1,6 @@
 # IDE files #
 #############
-.idea/*
+.idea/
 lib/__pycache__/*
 
 # OS generated files #
