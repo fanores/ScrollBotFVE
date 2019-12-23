@@ -1,2 +1,1 @@
 Date;Surplus;ConsumedHT;ConsumedLT;Produced;
-
