@@ -42,7 +42,7 @@ class FveHttpClient:
                       2: day before yesterday
                       ...
             List of Elements:
-            -> <SSD{index}> : measured day
+            -> <SDD{index}> : measured day
             -> <SDS4>       : surplus (not consumed) by all phases L1 + L2 + L3
             -> <SDH4>       : consumed by all phases L1 + L2 + L3 (high tarif)
             -> <SDL4>       : consumed by all phases L1 + L2 + L3 (low tarif)
@@ -50,7 +50,7 @@ class FveHttpClient:
         :return: request response from FVE
         """
         request_url = self.url + self.DAY_MEASUREMENT_URL_SUFFIX
-        request_url.replace("{index}", day)
+        request_url = request_url.replace('{index}', day)
 
         try:
             fve_response = HttpClient.get_request(request_url)
