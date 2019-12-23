@@ -7,6 +7,7 @@ class FveFileWriter:
     SEMICOLON = ";"
     ACTUAL_MEASUREMENT_IDS = ['DaR', 'TiR', 'FE1', 'PPS', 'FP', 'Te', 'EL1', 'ETS', 'ETL']
     DAY_MEASUREMENT_IDS = ['SSD1', 'SSD2', 'SSD3', 'SSD4', 'SSD5', 'SSD6', 'SSD7', 'SDS4', 'SDH4', 'SDL4', 'SDP4']
+    ELEMENT_NOT_AVAILABLE = "N/A"
 
     # constructor
     def __init__(self, file):
@@ -53,3 +54,19 @@ class FveFileWriter:
         :return: dictionary of all elements of the ROOT node
         """
         # TO-DO: finish implementation
+        day_measurement_ids = self.DAY_MEASUREMENT_IDS
+        try:
+            file = open(self.file, 'a+')
+        except FileNotFoundError as error:
+            raise FveFileError(print(error))
+
+        line = ''
+        for element in day_measurement_ids:
+            element_vaue = day_measurement.get(element, self.ELEMENT_NOT_AVAILABLE)
+
+            # store element if it is available
+            if element_vaue != self.ELEMENT_NOT_AVAILABLE:
+                line = line + day_measurement.get(element, "") + self.SEMICOLON
+
+        file.write(line + "\n")
+        file.close()
