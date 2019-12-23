@@ -13,6 +13,7 @@ def main():
     # --------------------------------------------------------------------------------
     # Get & Process Actual Measurements
     # --------------------------------------------------------------------------------
+    print('ACTUAL MEASUREMENT DETAILS:')
     fve_http_client = FveHttpClient(url)
     fve_response = fve_http_client.get_actual_measurements()
     print(fve_response.text)
@@ -31,8 +32,9 @@ def main():
     # --------------------------------------------------------------------------------
     # Get & Process Daily Measurements
     # --------------------------------------------------------------------------------
+    print('YESTERDAY MEASUREMENT DETAILS:')
     fve_http_client = FveHttpClient(url)
-    fve_response = fve_http_client.get_day_measurements(1)
+    fve_response = fve_http_client.get_day_measurements('1')
     print(fve_response.text)
 
     # Parse Measurements
