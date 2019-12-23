@@ -6,7 +6,7 @@ class FveFileWriter:
     # constants
     SEMICOLON = ";"
     ACTUAL_MEASUREMENT_IDS = ['DaR', 'TiR', 'FE1', 'PPS', 'FP', 'Te', 'EL1', 'ETS', 'ETL']
-    DAY_MEASUREMENT_IDS = ['SSD1', 'SSD2', 'SSD3', 'SSD4', 'SSD5', 'SSD6', 'SSD7', 'SDS4', 'SDH4', 'SDL4', 'SDP4']
+    DAY_MEASUREMENT_IDS = ['SDD1', 'SDD2', 'SDD3', 'SDD4', 'SDD5', 'SDD6', 'SDD7', 'SDS4', 'SDH4', 'SDL4', 'SDP4']
     ELEMENT_NOT_AVAILABLE = "N/A"
 
     # constructor
@@ -46,7 +46,7 @@ class FveFileWriter:
     def write_day_measurement(self, day_measurement):
         """
             Write Day Measurement
-            1. <SSD{index}> - Date
+            1. <SDD{index}> - Date
             2. <SDS4> - Surplus
             3. <SDH4> - Consumed High Tariff
             4. <SDL4> - Consumed Low Tariff
