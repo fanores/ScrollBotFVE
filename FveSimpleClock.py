@@ -1,6 +1,7 @@
 """FVE Simple Clock with Day Measurement Storage"""
 # ScrollPhatHD requirements
 import time
+from datetime import date
 import scrollphathd
 from scrollphathd.fonts import font5x5
 # FVE data processing requirements
@@ -10,13 +11,36 @@ from lib.FveFileWriter import FveFileWriter
 from pathlib import Path
 
 def main():
-    # Brightness of Scroll Phat HD
-    BRIGHTNESS = 0.3
+    # CONSTANTS: ScrollPhat HD
+    BRIGHTNESS = 0.3 # Brightness of Scroll Phat HD
+
+    # CONSTANTS: FVE
+    URL = 'http://192.168.2.51:8003/'
 
     # FVE Pimoroni Scroll Bot is upside down, fix this!
     scrollphathd.rotate(degrees=180)
 
+    # Initialize FVE prerequisites
+    fve_http_client = FveHttpClient(URL)
+    measurements_folder_path = Path("measurements")
+    day_measurement_file = measurements_folder_path / "day_measurement.txt"
+    date_for_measurement = ''
+
     while True:
+        # ##############################################################
+        # FVE day measurement
+        # ##############################################################
+        if date_for_measurement != date.today() and time.strftime("%H") >= "00" and time.strftime("%M") >= "10":
+            fve_response = fve_http_client.get_day_measurements('1')
+            fve_xml_parser = FveXmlParser(fve_response.text)
+            day_measurement = fve_xml_parser.parse_xml()
+            fve_file_writer = FveFileWriter(day_measurement_file)
+            fve_file_writer.write_day_measurement(day_measurement)
+            date_for_measurement = date.today()
+
+        # ##############################################################
+        # ScrollPhat HD time display
+        # ##############################################################
         scrollphathd.clear()
 
         # Display the time (HH:MM) in a 5x5 pixel font
