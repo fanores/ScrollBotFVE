@@ -31,7 +31,7 @@ class FveFileWriter:
 
         measurement_ids = self.ACTUAL_MEASUREMENT_IDS
         try:
-            file = open(self.file, 'a+')
+            file = open(str(self.file), 'a+')
         except FileNotFoundError as error:
             raise FveFileError(print(error))
 
@@ -53,10 +53,9 @@ class FveFileWriter:
             5. <SDP4> - Produced
         :return: dictionary of all elements of the ROOT node
         """
-        # TO-DO: finish implementation
         day_measurement_ids = self.DAY_MEASUREMENT_IDS
         try:
-            file = open(self.file, 'a+')
+            file = open(str(self.file), 'a+')
         except FileNotFoundError as error:
             raise FveFileError(print(error))
 
