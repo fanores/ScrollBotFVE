@@ -12,7 +12,7 @@ from pathlib import Path
 
 def main():
 	# CONSTANTS: ScrollPhat HD
-	BRIGHTNESS = 0.3 # Brightness of Scroll Phat HD
+	BRIGHTNESS = 0.1 # Brightness of Scroll Phat HD
 
 	# CONSTANTS: FVE
 	URL = 'http://192.168.2.51:8003/'
