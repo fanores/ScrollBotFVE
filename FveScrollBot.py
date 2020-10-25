@@ -19,8 +19,8 @@ def main():
     print(fve_response.text)
 
     # Parse Measurements
-    fve_xml_parser = FveXmlParser(fve_response.text)
-    actual_measurement = fve_xml_parser.parse_xml()
+    fve_xml_parser = FveXmlParser()
+    actual_measurement = fve_xml_parser.parse_root_child_elements_into_dictionary(fve_response.text)
     print(actual_measurement)
 
     # Write Actual Measurements to File
@@ -38,8 +38,8 @@ def main():
     print(fve_response.text)
 
     # Parse Measurements
-    fve_xml_parser = FveXmlParser(fve_response.text)
-    day_measurement = fve_xml_parser.parse_xml()
+    fve_xml_parser = FveXmlParser()
+    day_measurement = fve_xml_parser.parse_root_child_elements_into_dictionary(fve_response.text)
     print(day_measurement)
 
     # Write Day Measurements to File
@@ -47,6 +47,7 @@ def main():
     day_measurement_file = project_folder_path / "day_measurement.txt"
     fve_file_writer = FveFileWriter(day_measurement_file)
     fve_file_writer.write_day_measurement(day_measurement)
+
 
 if __name__ == '__main__':
     main()
