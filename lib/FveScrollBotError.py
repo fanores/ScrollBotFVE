@@ -2,25 +2,26 @@
 
 
 class FveScrollBotError(Exception):
-    """Base class for exceptions in FveScrollBot project."""
-    pass
+	"""Base class for exceptions in FveScrollBot project."""
+	pass
 
 
 class FveHttpError(FveScrollBotError):
-    """Exceptions raised for HTTP errors."""
+	"""Exceptions raised for HTTP errors."""
 
-    def __init__(self, message):
-        self.message = message
+	def __init__(self, message):
+		self.message = message
 
 
 class FveXmlError(FveScrollBotError):
-    """Exceptions raised for XML errors."""
+	"""Exceptions raised for XML errors."""
 
-    def __init__(self, message):
-        self.message = message
+	def __init__(self, message):
+		self.message = message
+
 
 class FveFileError(FveScrollBotError):
-    """Exceptions raised for File processing errors."""
+	"""Exceptions raised for File processing errors."""
 
-    def __init__(self, message):
-        self.message = message
+	def __init__(self, message):
+		self.message = message
