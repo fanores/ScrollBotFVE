@@ -61,10 +61,10 @@ class FveFileWriter:
 
         line = ''
         for element in day_measurement_ids:
-            element_vaue = day_measurement.get(element, self.ELEMENT_NOT_AVAILABLE)
+            element_value = day_measurement.get(element, self.ELEMENT_NOT_AVAILABLE)
 
             # store element if it is available
-            if element_vaue != self.ELEMENT_NOT_AVAILABLE:
+            if element_value != self.ELEMENT_NOT_AVAILABLE:
                 line = line + day_measurement.get(element, "") + self.SEMICOLON
 
         file.write(line + "\n")
