@@ -8,24 +8,24 @@ class FveXmlParser:
     # constants
 
     # constructor
-    def __init__(self, xml):
-        self.xml = xml
+    # def __init__(self, xml):
+    #     self.xml = xml
 
-    # parse actual measurements from response
-    def parse_xml(self):
+    # parse XML elements into dictionary
+    def parse_root_child_elements_into_dictionary(self, xml):
         """
             Parse Actual Measurements
             Stores all the XML elements into a dictionary.
         :return: dictionary of all elements of the ROOT node
         """
-        actual_measurements = defaultdict(str)
+        child_elements = defaultdict(str)
 
         try:
-            root_element = ElementTree.fromstring(self.xml)
+            root_element = ElementTree.fromstring(xml)
         except FveXmlError as error:
             raise FveXmlError(print(error))
 
         for child_element in root_element:
-            actual_measurements[child_element.tag] = child_element.text
+            child_elements[child_element.tag] = child_element.text
 
-        return actual_measurements
+        return child_elements
