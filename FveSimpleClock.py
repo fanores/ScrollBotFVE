@@ -10,18 +10,19 @@ from lib.FveXmlParser import FveXmlParser
 from lib.FveFileWriter import FveFileWriter
 from pathlib import Path
 
+
 def main():
 	# CONSTANTS: ScrollPhat HD
-	BRIGHTNESS = 0.1 # Brightness of Scroll Phat HD
+	brightness = 0.1  # Brightness of Scroll Phat HD
 
 	# CONSTANTS: FVE
-	URL = 'http://192.168.2.51:8003/'
+	url = 'http://192.168.2.51:8003/'
 
 	# FVE Pimoroni Scroll Bot is upside down, fix this!
 	scrollphathd.rotate(degrees=180)
 
 	# Initialize FVE prerequisites
-	fve_http_client = FveHttpClient(URL)
+	fve_http_client = FveHttpClient(url)
 	measurements_folder_path = Path("measurements")
 	day_measurement_file = measurements_folder_path / "day_measurement.txt"
 	date_for_measurement = ''
@@ -32,8 +33,8 @@ def main():
 		# ##############################################################
 		if date_for_measurement != date.today() and time.strftime("%H") >= "00" and time.strftime("%M") >= "10":
 			fve_response = fve_http_client.get_day_measurements('1')
-			fve_xml_parser = FveXmlParser(fve_response.text)
-			day_measurement = fve_xml_parser.parse_xml()
+			fve_xml_parser = FveXmlParser()
+			day_measurement = fve_xml_parser.parse_root_child_elements_into_dictionary(fve_response.text)
 			fve_file_writer = FveFileWriter(day_measurement_file)
 			fve_file_writer.write_day_measurement(day_measurement)
 			date_for_measurement = date.today()
@@ -49,7 +50,7 @@ def main():
 			x=0,  # Align to the left of the buffer
 			y=0,  # Align to the top of the buffer
 			font=font5x5,  # Use the font5x5 font we imported above
-			brightness=BRIGHTNESS  # Use our global brightness value
+			brightness=brightness  # Use our global brightness value
 		)
 
 		# int(time.time()) % 2 will tick between 0 and 1 every second.
@@ -68,7 +69,9 @@ def main():
 		scrollphathd.show()
 		time.sleep(0.1)
 
+
 if __name__ == '__main__':
+
 	print(
 		"""
 			FVE Simple Clock:
@@ -76,4 +79,5 @@ if __name__ == '__main__':
 			plus stores FVE day measurements.
 			Press Ctrl+C to exit!
 		""")
+
 	main()
