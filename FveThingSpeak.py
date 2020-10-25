@@ -12,22 +12,22 @@ def main():
     ts_api_key = '123'
 
     # TODO: Schedule a job
-    job(fve_url, thing_speak_url, ts_api_key)
+    actual_measurement_job(fve_url, thing_speak_url, ts_api_key)
 
 
-def job(fve_url, ts_url, ts_api_key):
+def actual_measurement_job(fve_url, ts_url, ts_api_key):
     # --- START
     print('Measurement starts at: {}'.format(datetime.now().strftime("%d/%m/%Y %H:%M:%S")))
 
-    # --- FVE -> get day measurement
+    # --- FVE -> get actual measurement
     fve = FveRestApi(fve_url)
     fve_response = fve.get_actual_measurements()
 
-    # --- PARSER -> retrieve measurement in a dictionary
-    xml_parser = FveXmlParser(fve_response.text)
-    measurement = xml_parser.parse_xml()
+    # --- PARSER -> parse measurement into a dictionary
+    xml_parser = FveXmlParser()
+    measurement = xml_parser.parse_root_child_elements_into_dictionary(fve_response.text)
 
-    # --- THINGSPEAK -> upload measurement
+    # --- THING-SPEAK -> upload measurement
     thing_speak = ThingSpeakRestApi(ts_url, ts_api_key)
     thing_speak.write_one_measurement_value(measurement.get('PPS', ""))
 
