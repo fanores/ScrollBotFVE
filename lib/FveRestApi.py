@@ -48,8 +48,8 @@ class FveRestApi:
             List of Elements:
             -> <SDD{index}> : measured day
             -> <SDS4>       : surplus (not consumed) by all phases L1 + L2 + L3
-            -> <SDH4>       : consumed by all phases L1 + L2 + L3 (high tarif)
-            -> <SDL4>       : consumed by all phases L1 + L2 + L3 (low tarif)
+            -> <SDH4>       : consumed by all phases L1 + L2 + L3 (high tariff)
+            -> <SDL4>       : consumed by all phases L1 + L2 + L3 (low tariff)
             -> <SDP4>       : produced by all phases L1 + L2 + L3
         :return: request response from FVE
         """
